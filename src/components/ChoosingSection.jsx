@@ -1,12 +1,19 @@
 import { useState } from 'react'
+import { picks } from '../utils'
 
 function ChoosingSection({ handlePick }) {
+    const pickBtns = picks.map(item => (
+        <button
+            data-pick={item.name}
+            className={`pick-btn pick-btn--${item.name}`}
+            onClick={handlePick}>
+            {item.icon}
+        </button>
+    ))
 
     return (
         <section className="section section--choosing">
-            <button data-pick="paper" className='pick-btn' onClick={handlePick}>Paper</button>
-            <button data-pick="scissors" className='pick-btn' onClick={handlePick}>Scissors</button>
-            <button data-pick="rock" className='pick-btn' onClick={handlePick}>Rock</button>
+            {pickBtns}
         </section>
     )
 }

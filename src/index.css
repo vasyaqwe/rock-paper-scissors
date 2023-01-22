@@ -1,10 +1,10 @@
 :root {
-  --clr-scissors: hsl(39, 89%, 49%);
-  --clr-scissors-lighter: hsl(39, 89%, 49%);
-  --clr-paper: hsl(230, 89%, 62%);
-  --clr-paper-lighter: hsl(230, 89%, 65%);
-  --clr-rock: hsl(349, 71%, 52%);
-  --clr-rock-lighter: hsl(349, 70%, 56%);
+  --clr-scissors: hsl(40, 84%, 53%);
+  --clr-scissors-darker: hsl(39, 89%, 40%);
+  --clr-paper: hsl(230, 89%, 65%);
+  --clr-paper-darker: hsl(230, 89%, 59%);
+  --clr-rock: hsl(349, 70%, 56%);
+  --clr-rock-darker: hsl(349, 71%, 40%);
 
   --clr-primary-200: hsl(217, 16%, 45%);
   --clr-primary-300: hsl(229, 25%, 31%);
@@ -40,6 +40,7 @@ body {
   line-height: 1.5;
   background: radial-gradient(circle, var(--clr-primary-600), var(--clr-primary-900));
   color: #fff;
+  font-family: 'Barlow Semi Condensed', sans-serif;
 }
 
 a {
@@ -73,4 +74,52 @@ video {
 
 .uppercase {
   text-transform: uppercase;
+}
+
+.text-center {
+  text-transform: capitalize;
+}
+
+.text-primary-200 {
+  color: var(--clr-primary-200)
+}
+
+.text-primary-300 {
+  color: var(--clr-primary-300)
+}
+
+.text-primary-400 {
+  color: var(--clr-primary-400)
+}
+
+.text-primary-600 {
+  color: var(--clr-primary-600)
+}
+
+.text-primary-900 {
+  color: var(--clr-primary-900)
+}
+
+.bg-primary-200 {
+  background-color: var(--clr-primary-200)
+}
+
+.bg-primary-300 {
+  background-color: var(--clr-primary-300)
+}
+
+.bg-primary-400 {
+  background-color: var(--clr-primary-400)
+}
+
+.bg-primary-600 {
+  background-color: var(--clr-primary-600)
+}
+
+.bg-primary-900 {
+  background-color: var(--clr-primary-900)
+}
+
+.bg-white {
+  background-color: #fff;
 }

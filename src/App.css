@@ -1,3 +1,36 @@
+.header {
+  margin-top: 3rem;
+  border: 3px solid var(--clr-primary-200);
+  padding: 1.5em 1.8em;
+  border-radius: 1rem;
+  width: min(95%, 700px);
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__score-box {
+  display: grid;
+  place-items: center;
+  padding: .5em 2em;
+  border-radius: .6rem;
+}
+
+.header__score-text {
+  letter-spacing: .2rem;
+  font-size: 1.1rem;
+}
+
+.header__score-num {
+  line-height: .9em;
+  font-size: clamp(2rem, 12vw, 4rem);
+}
+
+.header__title {
+  font-size: clamp(1.5rem, 8vw, 2.6rem);
+  line-height: .9em;
+}
+
 main {
   display: grid;
   place-items: center;
@@ -8,9 +41,56 @@ main {
   cursor: pointer;
 }
 
+.section--choosing {
+  margin-top: 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6rem;
+}
+
 .pick-btn {
-  width: clamp(150px, 10vw, 250px);
-  height: clamp(150px, 10vw, 250px);
+  border: 0;
+  display: grid;
+  place-items: center;
+  width: clamp(80px, 10vw, 150px);
+  height: clamp(80px, 10vw, 150px);
   border-radius: 100vmax;
-  background-color: #fff;
+  position: relative;
+}
+
+.pick-btn svg {
+  z-index: 2;
+}
+
+.pick-btn::before,
+.pick-btn::after {
+  content: '';
+  position: absolute;
+  border-radius: 100vmax;
+}
+
+.pick-btn::before {
+  z-index: -1;
+  inset: -1.5rem;
+  transform: rotate(-90deg);
+}
+
+.pick-btn::after {
+  inset: 0;
+  background: radial-gradient(circle at 60%, #fff, #fff 50%, #fff 68%, rgb(219, 219, 219) 55%);
+  transform: rotate(90deg);
+}
+
+.pick-btn--paper::before {
+  background: radial-gradient(circle at 70%, var(--clr-paper), var(--clr-paper) 70%, var(--clr-paper) 75%, var(--clr-paper-darker) 75%);
+}
+
+.pick-btn--rock::before {
+  background: radial-gradient(circle at 70%, var(--clr-rock), var(--clr-rock) 70%, var(--clr-rock) 75%, var(--clr-rock-darker) 75%);
+
+}
+
+.pick-btn--scissors::before {
+  background: radial-gradient(circle at 70%, var(--clr-scissors), var(--clr-scissors) 70%, var(--clr-scissors) 75%, var(--clr-scissors-darker) 75%);
+
 }
