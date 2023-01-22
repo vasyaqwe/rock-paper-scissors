@@ -1,33 +1,60 @@
+import { useEffect } from 'react'
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
+import ChoosingSection from './components/ChoosingSection'
+import Header from './components/Header'
+import ResultsSection from './components/ResultsSection'
+import { picks, rules } from './utils'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [winState, setWinState] = useState('')
+  const [gameRunning, setGameRunning] = useState(false)
+  const [userPick, setUserPick] = useState('')
+  const [computerPick, setComputerPick] = useState('')
+  const [score, setScore] = useState(() => JSON.parse(localStorage.getItem('score')) || 0)
+  useEffect(() => {
+    localStorage.setItem('score', JSON.stringify(score))
+  }, [score])
 
+  function handlePick(e) {
+    setGameRunning(true)
+    setUserPick(e.target.dataset.pick)
+    setComputerPick(picks[Math.floor(Math.random() * picks.length)])
+  }
+  function playAgain() {
+    setGameRunning(false)
+    setUserPick('')
+    setComputerPick('')
+    setWinState('')
+  }
+  function getResults(userPick, computerPick) {
+    const picksArr = rules.find(item => item.includes(userPick) && item.includes(computerPick))
+    if (userPick === computerPick) {
+      setWinState("It's a tie!")
+    } else {
+      if (picksArr.indexOf(userPick) < picksArr.indexOf(computerPick)) {
+        setWinState('You win!')
+        setScore(prev => prev + 1)
+      } else {
+        setWinState('You lose!')
+      }
+    }
+  }
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <>
+      <Header score={score} />
+      <main>
+        {!gameRunning ?
+          <ChoosingSection handlePick={handlePick} /> :
+          <ResultsSection playAgain={playAgain} getResults={getResults}
+            userPick={userPick}
+            computerPick={computerPick}
+            winState={winState}
+          />
+        }
+      </main>
+    </>
+
   )
 }
 
