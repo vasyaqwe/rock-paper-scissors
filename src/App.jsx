@@ -15,10 +15,9 @@ function App() {
   useEffect(() => {
     localStorage.setItem('score', JSON.stringify(score))
   }, [score])
-
   function handlePick(e) {
     setGameRunning(true)
-    setUserPick(e.target.dataset.pick)
+    setUserPick(picks.find(item => item.name === e.currentTarget.dataset.pick))
     setComputerPick(picks[Math.floor(Math.random() * picks.length)])
   }
   function playAgain() {
@@ -28,11 +27,11 @@ function App() {
     setWinState('')
   }
   function getResults(userPick, computerPick) {
-    const picksArr = rules.find(item => item.includes(userPick) && item.includes(computerPick))
-    if (userPick === computerPick) {
+    const picksArr = rules.find(item => item.includes(userPick.name) && item.includes(computerPick.name))
+    if (userPick.name === computerPick.name) {
       setWinState("It's a tie!")
     } else {
-      if (picksArr.indexOf(userPick) < picksArr.indexOf(computerPick)) {
+      if (picksArr.indexOf(userPick.name) < picksArr.indexOf(computerPick.name)) {
         setWinState('You win!')
         setScore(prev => prev + 1)
       } else {

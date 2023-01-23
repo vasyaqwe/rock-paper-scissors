@@ -11,6 +11,16 @@
   --clr-primary-400: hsl(229, 64%, 46%);
   --clr-primary-600: hsl(214, 47%, 23%);
   --clr-primary-900: hsl(237, 49%, 15%);
+
+  --fs-400: 1.1rem;
+  --fs-500: 1.1rem;
+  --fs-900: 4rem;
+}
+
+@media(min-width: 40em) {
+  :root {
+    --fs-500: 1.5rem;
+  }
 }
 
 *,
@@ -72,12 +82,24 @@ video {
   }
 }
 
+.fs-400 {
+  font-size: var(--fs-400);
+}
+
+.fs-500 {
+  font-size: var(--fs-500);
+}
+
+.fs-900 {
+  font-size: var(--fs-900);
+}
+
 .uppercase {
   text-transform: uppercase;
 }
 
 .text-center {
-  text-transform: capitalize;
+  text-align: center;
 }
 
 .text-primary-200 {
@@ -122,4 +144,52 @@ video {
 
 .bg-white {
   background-color: #fff;
+}
+
+.pick-btn svg {
+  z-index: 2;
+}
+
+.pick-btn::before,
+.pick-btn::after {
+  content: '';
+  position: absolute;
+  border-radius: 100vmax;
+}
+
+.pick-btn::before {
+  inset: -1.5rem;
+  transform: rotate(-90deg);
+}
+
+.pick-btn::after {
+  inset: 1rem;
+  background: radial-gradient(circle at 60%, #fff, #fff 50%, #fff 68%, rgb(219, 219, 219) 55%);
+  transform: rotate(90deg);
+}
+
+.pick-btn--paper {
+  background: radial-gradient(circle at 70%, var(--clr-paper), var(--clr-paper) 70%, var(--clr-paper) 75%, var(--clr-paper-darker) 75%);
+}
+
+.pick-btn--scissors {
+  background: radial-gradient(circle at 70%, var(--clr-scissors), var(--clr-scissors) 70%, var(--clr-scissors) 75%, var(--clr-scissors-darker) 75%);
+}
+
+.pick-btn--rock {
+  background: radial-gradient(circle at 70%, var(--clr-rock), var(--clr-rock) 70%, var(--clr-rock) 75%, var(--clr-rock-darker) 75%);
+}
+
+.btn {
+  background-color: #fff;
+  border: 0;
+  border-radius: .35rem;
+  padding: .8em 3.9em;
+  letter-spacing: .25rem;
+  text-transform: uppercase;
+  font-size: var(--fs-400);
+}
+
+.btn:hover {
+  color: var(--clr-rock);
 }

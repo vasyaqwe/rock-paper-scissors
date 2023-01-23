@@ -3,9 +3,9 @@ import { picks } from '../utils'
 
 function ChoosingSection({ handlePick }) {
     const pickBtns = picks.map(item => (
-        <button
+        <button key={item.name}
             data-pick={item.name}
-            className={`pick-btn pick-btn--${item.name}`}
+            className={`pick-btn section--choosing__pick-btn section--choosing__pick-btn--${item.name} pick-btn--${item.name}`}
             onClick={handlePick}>
             {item.icon}
         </button>
