@@ -1,10 +1,15 @@
 import { useEffect } from 'react'
+import { motion } from "framer-motion"
 
 function ResultsSection({ userPick, computerPick, playAgain, winState, getResults }) {
-    useEffect(() => getResults(userPick, computerPick), [])
+    useEffect(() => {
+        getResults(userPick, computerPick)
+    }, [])
 
     return (
-        <section className="section section--result">
+        <motion.section initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="section section--result">
             <div className='section--result__pick'>
                 <p className='uppercase text-center fs-500'>You picked</p>
                 <div className={`pick-btn section--result__pick-btn pick-btn--${userPick.name} pick-btn--result`}>
@@ -22,7 +27,7 @@ function ResultsSection({ userPick, computerPick, playAgain, winState, getResult
                     {computerPick.icon}
                 </div>
             </div>
-        </section>
+        </motion.section>
     )
 }
 

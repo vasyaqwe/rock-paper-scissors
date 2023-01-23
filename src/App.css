@@ -42,7 +42,7 @@ main {
 }
 
 .section {
-  margin-top: 12rem;
+  margin-top: 6rem;
 }
 
 .pick-btn {
@@ -62,7 +62,7 @@ main {
 .section--result {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  row-gap: 5rem;
+  row-gap: 1.5rem;
   column-gap: 2rem;
 }
 
@@ -73,7 +73,7 @@ main {
 }
 
 .section--result__pick-btn {
-  margin-block: 2rem;
+  margin-block: 1rem;
   align-self: center;
   width: 120px;
   height: 120px;
@@ -85,7 +85,7 @@ main {
   justify-self: center;
 }
 
-@media(min-width: 40em) {
+@media(min-width: 50em) {
   .section--result {
     grid-template-columns: 1fr 1fr 1fr;
   }

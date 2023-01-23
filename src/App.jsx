@@ -5,8 +5,11 @@ import ChoosingSection from './components/ChoosingSection'
 import Header from './components/Header'
 import ResultsSection from './components/ResultsSection'
 import { picks, rules } from './utils'
+import { AnimatePresence } from "framer-motion"
+import Modal from './components/Modal'
 
 function App() {
+  const [modalOpen, setModalOpen] = useState(false)
   const [winState, setWinState] = useState('')
   const [gameRunning, setGameRunning] = useState(false)
   const [userPick, setUserPick] = useState('')
@@ -43,17 +46,24 @@ function App() {
     <>
       <Header score={score} />
       <main>
-        {!gameRunning ?
-          <ChoosingSection handlePick={handlePick} /> :
-          <ResultsSection playAgain={playAgain} getResults={getResults}
-            userPick={userPick}
-            computerPick={computerPick}
-            winState={winState}
-          />
-        }
+        <AnimatePresence>
+          {modalOpen && <Modal key={"modal"} handleClose={() => setModalOpen(false)} />}
+          {!gameRunning ?
+            <ChoosingSection handlePick={handlePick}
+            />
+            :
+            <ResultsSection playAgain={playAgain} getResults={getResults}
+              userPick={userPick}
+              computerPick={computerPick}
+              winState={winState}
+            />
+          }
+        </AnimatePresence>
       </main>
+      <button onClick={() => setModalOpen(true)} className="btn btn--rules">
+        Rules
+      </button>
     </>
-
   )
 }
 
