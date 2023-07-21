@@ -1,5 +1,5 @@
 import { picks } from '../utils'
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 
 function ChoosingSection({ handlePick }) {
     const pickBtns = picks.map(item => (
@@ -12,12 +12,14 @@ function ChoosingSection({ handlePick }) {
     ))
 
     return (
-        <motion.section initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="section section--choosing">
-            {pickBtns}
-        </motion.section>
+        <AnimatePresence mode='popLayout'>
+            <motion.section initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="section section--choosing">
+                {pickBtns}
+            </motion.section>
+        </AnimatePresence>
     )
 }
 
